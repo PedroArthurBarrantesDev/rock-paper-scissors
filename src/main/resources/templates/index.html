@@ -8,8 +8,60 @@
 </head>
 <body>
 <main>
-    <h1>Rock Paper Scissors</h1>
-    <p>Coming soon: pick Rock, Paper or Scissors with your mouse and beat the computer in a best of 5.</p>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+        <p class="subtitle">Best of 5: first to win 3 rounds takes the match. Draws don't count.</p>
+    </header>
+
+    <section class="scoreboard" aria-label="Score">
+        <div class="score">
+            <span class="score-label">You</span>
+            <span class="score-value" id="player-score">0</span>
+        </div>
+        <div class="score score-draws">
+            <span class="score-label">Draws</span>
+            <span class="score-value" id="draws">0</span>
+        </div>
+        <div class="score">
+            <span class="score-label">Computer</span>
+            <span class="score-value" id="computer-score">0</span>
+        </div>
+    </section>
+
+    <section class="arena" aria-label="This round">
+        <figure class="hand" id="player-hand">
+            <div class="hand-slot"><img id="player-pick" alt="" hidden><span class="placeholder">?</span></div>
+            <figcaption>You</figcaption>
+        </figure>
+        <div class="versus">vs</div>
+        <figure class="hand" id="computer-hand">
+            <div class="hand-slot"><img id="computer-pick" alt="" hidden><span class="placeholder">?</span></div>
+            <figcaption>Computer</figcaption>
+        </figure>
+    </section>
+
+    <p class="result" id="result" role="status" aria-live="polite">Pick a card to play the first round.</p>
+
+    <section class="choices" aria-label="Your choice">
+        <button type="button" class="card" data-choice="ROCK">
+            <img th:src="@{/img/rock.svg}" alt="">
+            <span>Rock</span>
+        </button>
+        <button type="button" class="card" data-choice="PAPER">
+            <img th:src="@{/img/paper.svg}" alt="">
+            <span>Paper</span>
+        </button>
+        <button type="button" class="card" data-choice="SCISSORS">
+            <img th:src="@{/img/scissors.svg}" alt="">
+            <span>Scissors</span>
+        </button>
+    </section>
+
+    <div class="actions">
+        <button type="button" class="new-game" id="new-game">New game</button>
+    </div>
 </main>
+
+<script th:src="@{/js/game.js}"></script>
 </body>
 </html>

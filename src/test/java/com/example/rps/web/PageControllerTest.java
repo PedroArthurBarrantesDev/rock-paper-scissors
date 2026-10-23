@@ -22,6 +22,10 @@ class PageControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
-                .andExpect(content().string(containsString("Rock Paper Scissors")));
+                .andExpect(content().string(containsString("Rock Paper Scissors")))
+                .andExpect(content().string(containsString("data-choice=\"ROCK\"")))
+                .andExpect(content().string(containsString("data-choice=\"PAPER\"")))
+                .andExpect(content().string(containsString("data-choice=\"SCISSORS\"")))
+                .andExpect(content().string(containsString("/js/game.js")));
     }
 }

@@ -15,7 +15,7 @@ All game logic is written in Java. Spring Boot serves the game and a small web p
 ./mvnw spring-boot:run
 ```
 
-Then open http://localhost:8080. On Windows use `mvnw.cmd` instead of `./mvnw`.
+Then open http://localhost:8080 and click Rock, Paper or Scissors to play. On Windows use `mvnw.cmd` instead of `./mvnw`.
 
 ## REST API
 
@@ -53,9 +53,13 @@ GitHub Actions runs the same command on every push and pull request.
 ```
 src/main/java/com/example/rps/      Spring Boot app and game code
 src/main/resources/templates/       Thymeleaf page
-src/main/resources/static/          CSS, JavaScript and images
+src/main/resources/static/          CSS, JavaScript (game.js) and card images (img/)
 src/test/java/com/example/rps/      Tests
 ```
+
+## Card images
+
+The cards use simple placeholder drawings in `src/main/resources/static/img/` (`rock.svg`, `paper.svg`, `scissors.svg`). To use your own illustrations, replace those files, or add PNGs and change the three `<img>` paths in `templates/index.html`; the game script reads the paths from there.
 
 ## Roadmap
 
