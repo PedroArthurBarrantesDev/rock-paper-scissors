@@ -1,13 +1,291 @@
+:root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --border: #d2d2d7;
+    --accent: #0071e3;
+    --win: #1e8e3e;
+    --lose: #d93025;
+    --draw: #6e6e73;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: system-ui, sans-serif;
-    background: #f5f5f7;
-    color: #1d1d1f;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
 
 main {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 48px 16px;
+    padding: 32px 16px 48px;
     text-align: center;
+}
+
+h1 {
+    margin: 0 0 4px;
+    font-size: 2rem;
+}
+
+.subtitle {
+    margin: 0 0 24px;
+    color: var(--muted);
+}
+
+/* Scoreboard */
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.score {
+    min-width: 110px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.score-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.score-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.score-draws .score-value {
+    color: var(--muted);
+}
+
+/* Arena: the two picks of the current round */
+
+.arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.hand {
+    margin: 0;
+}
+
+.hand-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+}
+
+.hand-slot img {
+    width: 100px;
+    height: 100px;
+}
+
+.hand-slot img:not([hidden]) + .placeholder {
+    display: none;
+}
+
+.placeholder {
+    font-size: 3rem;
+    color: var(--border);
+}
+
+.hand figcaption {
+    margin-top: 8px;
+    color: var(--muted);
+}
+
+.hand.winner .hand-slot {
+    border: 3px solid var(--win);
+}
+
+#computer-hand.winner .hand-slot {
+    border-color: var(--lose);
+}
+
+.hand.shuffling img {
+    animation: shake 0.15s infinite alternate;
+}
+
+.versus {
+    font-weight: 700;
+    color: var(--muted);
+}
+
+/* Result line */
+
+.result {
+    min-height: 1.6em;
+    margin: 0 0 24px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.result.win {
+    color: var(--win);
+}
+
+.result.lose {
+    color: var(--lose);
+}
+
+.result.draw {
+    color: var(--draw);
+}
+
+.result.pop {
+    animation: pop 0.3s ease-out;
+}
+
+/* Choice cards */
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 150px;
+    padding: 16px;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.card img {
+    width: 96px;
+    height: 96px;
+}
+
+.card:hover:not(:disabled),
+.card:focus-visible {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-hover);
+    outline: none;
+}
+
+.card.selected {
+    border-color: var(--accent);
+    border-width: 3px;
+}
+
+.card:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.card.selected:disabled {
+    opacity: 1;
+}
+
+/* New game */
+
+.new-game {
+    padding: 10px 24px;
+    font: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--accent);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.new-game:hover {
+    filter: brightness(1.1);
+}
+
+.new-game.attention {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes shake {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(8deg); }
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); }
+    to { transform: scale(1); }
+}
+
+@keyframes pulse {
+    50% { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Phones */
+
+@media (max-width: 520px) {
+    .choices {
+        gap: 8px;
+    }
+
+    .card {
+        width: 31%;
+        padding: 12px 4px;
+    }
+
+    .card img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .hand-slot {
+        width: 110px;
+        height: 110px;
+    }
+
+    .hand-slot img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .score {
+        min-width: 0;
+        flex: 1;
+    }
 }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Rock">
+  <path d="M22 78 L18 56 L34 34 L58 24 L84 30 L100 50 L102 76 L86 94 L56 98 L32 92 Z"
+        fill="#9aa0a6" stroke="#4b5056" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M34 34 L46 52 L58 24 M46 52 L72 56 L84 30 M72 56 L100 50 M46 52 L40 78 L56 98 M72 56 L70 82 L86 94"
+        fill="none" stroke="#4b5056" stroke-width="2.5" stroke-linejoin="round" opacity="0.55"/>
+</svg>

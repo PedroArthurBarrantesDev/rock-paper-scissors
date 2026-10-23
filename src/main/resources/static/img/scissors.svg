@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Scissors">
+  <path d="M52 66 L104 18" stroke="#9aa0a6" stroke-width="9" stroke-linecap="round"/>
+  <path d="M52 54 L104 102" stroke="#bdc1c6" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="34" cy="38" r="16" fill="none" stroke="#d93025" stroke-width="8"/>
+  <circle cx="34" cy="82" r="16" fill="none" stroke="#d93025" stroke-width="8"/>
+  <path d="M46 48 L56 58 M46 72 L56 62" stroke="#d93025" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="57" cy="60" r="4" fill="#4b5056"/>
+</svg>
