@@ -1,5 +1,6 @@
 package com.example.rps.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +8,7 @@ import java.util.Optional;
 /**
  * A best-of-5 match: the first side to win 3 rounds wins the match. Draws don't count.
  */
-public class Match {
+public class Match implements Serializable {
 
     public static final int ROUNDS_TO_WIN = 3;
 
@@ -18,7 +19,7 @@ public class Match {
 
     public Round play(Choice player, Choice computer) {
         if (isOver()) {
-            throw new IllegalStateException("The match is over; start a new one");
+            throw new MatchOverException();
         }
         Round round = new Round(player, computer, GameRules.decide(player, computer));
         switch (round.outcome()) {

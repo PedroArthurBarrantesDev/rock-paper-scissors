@@ -17,6 +17,29 @@ All game logic is written in Java. Spring Boot serves the game and a small web p
 
 Then open http://localhost:8080. On Windows use `mvnw.cmd` instead of `./mvnw`.
 
+## REST API
+
+The game is played through three JSON endpoints. Each browser gets its own match, tracked by a session cookie.
+
+| Method | Path | What it does | Success | Errors |
+| --- | --- | --- | --- | --- |
+| GET | `/api/match` | Current score, and the result once the match is over | 200 | |
+| POST | `/api/match/rounds` | Plays one round, body `{"choice":"ROCK"}` | 201 | 400 bad or missing choice, 409 match already over |
+| POST | `/api/match` | Starts a new match | 201 | |
+
+Try it from a terminal while the app runs (`cookies.txt` keeps your session between commands):
+
+```bash
+curl -i -c cookies.txt -b cookies.txt \
+  -H "Content-Type: application/json" \
+  -d '{"choice":"ROCK"}' \
+  http://localhost:8080/api/match/rounds
+
+curl -b cookies.txt http://localhost:8080/api/match
+
+curl -i -X POST -b cookies.txt http://localhost:8080/api/match
+```
+
 ## Test it
 
 ```bash
